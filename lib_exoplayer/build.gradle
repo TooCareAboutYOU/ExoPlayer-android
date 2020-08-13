@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "30.0.1"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        targetCompatibility(JavaVersion.VERSION_1_8)
+        sourceCompatibility(JavaVersion.VERSION_1_8)
+    }
+    dataBinding {
+        enabled(true)
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+//    implementation 'com.google.android.exoplayer:exoplayer:2.6.0'  //完整库
+    api 'com.google.android.exoplayer:exoplayer-core:2.11.5' //核心库 必填
+    api 'com.google.android.exoplayer:exoplayer-dash:2.11.5' //支持DASH内容
+    api 'com.google.android.exoplayer:exoplayer-hls:2.11.5'  //支持HLS内容
+    api 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.11.5' //支持SmoothStreaming内容
+    api 'com.google.android.exoplayer:exoplayer-ui:2.11.5'   //与ExoPlayer一起使用的UI组件和资源
+}
